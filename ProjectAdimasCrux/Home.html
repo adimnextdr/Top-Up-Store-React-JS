@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Project Crux</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background-color: rgb(0, 0, 0);
+            height: 240vw;
+        }
+        #gambarUtama{
+            width: 70vw;
+            margin-top: 6vw;
+            position: absolute;
+            margin-left: 15vw;
+            animation: kelapkelip 5s infinite linear;
+        }
+        nav{
+            position: fixed;
+            width: 100vw;
+            height: 6vw;
+            border-bottom: 0.2vw rgb(0, 0, 0) solid;
+
+            background-color: rgba(0, 0, 0, 0.509);
+        }
+        #lgo{
+            position: absolute;
+            width: 10vw;
+        }
+        #decorBox{
+            width: 100vw;
+            box-shadow: 0 0 7vw rgb(218, 50, 50),0 0 3vw rgb(255, 0, 0);
+            height: 40vw;
+            background-image: linear-gradient(to bottom, red, rgba(255, 0, 0, 0.598));
+            position: absolute;
+            margin-top: -10vw;
+        }
+        #Container{
+            position: absolute;
+            background-image: linear-gradient(to top right, red, rgba(255, 0, 0, 0.598));
+            box-shadow: 0 0 8vw red;
+            width: 90vw;
+            margin-top: 60vw;
+            height: 120vw;
+            mix-blend-mode: lighten;
+            padding-top: 4vw;
+            margin-left: 4vw;
+        }
+        nav h1{
+            color: white;
+            font-size: 3vw;
+            margin-top: 1vw;
+            margin-left: 8vw;
+        }
+        #Container0{
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.963), rgba(0, 0, 0, 0.142));
+            box-shadow: 0 0 2vw rgb(0, 0, 0);
+            width: 90vw;
+            margin-top: 3vw;
+            height: 20vw;
+            margin-left: 2vw;
+            transition: 2s;
+        }
+        #Container0 span{
+            width: 90vw;
+            margin-top: 7vw;
+            margin-left: 10vw;
+            height: 20vw;
+            font-size: 4vw;
+            position: absolute;
+            color: white;
+            transition: 2s;
+        }
+        #Container1{
+            transition: 2s;
+            background-image: linear-gradient(to right,  rgb(255, 255, 255), rgba(255, 255, 255, 0.849));
+            box-shadow: 0 0 2vw rgb(0, 0, 0);
+            width: 1vw;
+            overflow: hidden;
+            height: 18vw;
+            transform: translateY(1vw);
+            margin-left: 4vw;
+        }
+        #belakang{
+            position: fixed;
+            width: 79vw;
+            margin-left: 15vw;
+            mix-blend-mode: lighten;
+            margin-top: -10vw;
+        }
+        #imgC{
+            width: 35vw;
+            position: absolute;
+            margin-left: -5vw;
+        }
+        #judulGame{
+            position: absolute;
+            margin-left: 30vw;
+            font-size: 2vw;
+            width: 45vw;
+            padding: 1vw;
+        }
+        #itemImg{
+            width: 5vw;
+            height: 5vw;
+        }
+        #itemImgcart{
+            width: 4vw;
+            height: 4vw;
+        }
+        .butonItemToCart,.butonItemToCart1,.butonItemToCart2{
+            width: 17vw;
+            height: 5vw;
+            margin-top: 6.5vw;
+            background-color: white;
+            cursor: pointer;
+            border: 0.1vw solid black;
+            position: absolute;
+        }
+        .butonItemToCart:active ,.butonItemToCart1:active,.butonItemToCart2:active{
+            background-color: rgb(216, 216, 216);
+        }
+        .butonItemToCart:hover ,.butonItemToCart1:hover,.butonItemToCart2:hover{
+            transform: scale(105%);
+        }
+        .butonItemToCart{
+            margin-left: 32vw;
+        }
+        .butonItemToCart1{
+            margin-left: 50vw;
+        }
+        .butonItemToCart2{
+            margin-left: 68vw;
+        }
+        #quantity{
+            position: absolute;
+            font-size: 3.5vw;
+            transform: translateX(7vw) translateY(-5.2vw);
+        }
+        nav i{
+            color: aliceblue;
+            font-size: 3vw;
+            cursor: pointer;
+            transform: translateX(90vw) translateY(-3vw);
+        }
+        #cartField{
+            width: 2vw;
+            display: none;
+            position: fixed;
+            height: 100vw;
+            margin-top: -5vw;
+            border: 0.2vw solid;
+            box-shadow: 0 0 5vw red;
+            background-color: rgb(255, 0, 0);
+        }
+        #cartItem{
+            background-color: rgb(255, 255, 255);
+            width: 13vw;
+            height: 4vw;
+            margin-top: 1vw;
+        }
+        #wrapcart{
+            margin-top: 15vw;
+            /* border: 1vw solid white; */
+            width: 24vw;
+        }
+        @keyframes kelapkelip {
+            0%,20%,22%,50%,65%,87%,99%{
+                box-shadow: 0 0 7vw rgb(103, 0, 0),0 0 2vw rgb(137, 0, 0);
+            }
+            1%,21%,23%,51%,66%,88%,100%{
+                 box-shadow: 0 0 7vw rgb(218, 50, 50),0 0 3vw rgb(255, 0, 0);
+            }
+        }
+        #cartItem h1 {
+            font-size: 1.6vw;
+            transform: translateX(4.5vw) translateY(-4.5vw);
+        }
+        #barPrice{
+            font-size: 1.2vw;
+            position: absolute;
+            width:28vw;
+            transform: translateX(4.5vw) translateY(-4.5vw);
+        }
+        .min{
+            font-size: 1vw;
+            position: absolute;
+            background-color: rgb(0, 0, 0);
+            padding: 1vw;
+            height: 1vw;
+            color: white;
+            transform: translateX(6.5vw) translateY(-4.5vw);
+        }
+        .min{
+            background-color: rgb(0, 0, 0);
+            box-shadow: 0 0 1vw black;
+            margin-left: 5vw;
+        }
+     
+        .min:active{
+            background-color: rgb(59, 59, 59);
+        }
+        #BillWindow{
+            border: 0.5vw solid white;
+            margin-top: 200vw;
+            position: absolute;
+            padding: 1vw;
+            width: 100vw;
+            height: 30vw;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- <img id="belakang" src="https://wallpaperaccess.com/full/6604090.gif"> -->
+    <img id="belakang" src="https://66.media.tumblr.com/55654c542dbd1d4acf8fbb48c3517043/tumblr_my9jqnKSDi1qaxgbho1_500.gif">
+    <div id="structure">
+        <div id="decorBox"></div>
+        <img src="./assets/Purple and White Modern Website Development Facebook Cover_20241124_114323_0000.png" id="gambarUtama">
+        <div id="Container">
+            <div id="Container0">
+                <span>MOBILE LEGENDS</span>
+                <div id="Container1">
+                    <img src="https://th.bing.com/th/id/OIP.MRt4XBKbQPqqXpc1Wmy0fwHaEK?rs=1&pid=ImgDetMain" alt="" id="imgC">
+                    <h1 id="judulGame">Mobile Legend</h1>
+                    <div class="butonItemToCart"  id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.Wy8VAg4J_8XAobO00ijuvgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">20</h1>
+                    </div>
+                    <div class="butonItemToCart1" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.Wy8VAg4J_8XAobO00ijuvgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">100</h1>
+                    </div>
+                    <div class="butonItemToCart2" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.Wy8VAg4J_8XAobO00ijuvgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">1850</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="Container0">
+                <span>GENSHIN IMPACT</span>
+                <div id="Container1">
+                    <img src="https://cdn.wccftech.com/wp-content/uploads/2023/08/genshin-impact-4-scaled.jpg" alt="" id="imgC">
+                    <h1 id="judulGame">GENSHIN IMPACT</h1>
+                    <div class="butonItemToCart"  id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.XcUekMvTYdZTSPd4obZrXgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">200</h1>
+                    </div>
+                    <div class="butonItemToCart1" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.XcUekMvTYdZTSPd4obZrXgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">500</h1>
+                    </div>
+                    <div class="butonItemToCart2" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.XcUekMvTYdZTSPd4obZrXgAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">1000</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="Container0">
+                <span>PLAYER UKNOWN BATTLEGROUND</span>
+                <div id="Container1">
+                    <img src="https://th.bing.com/th/id/OIP.Oj8oGCQ8aSx1OydnYTvZRgHaEK?rs=1&pid=ImgDetMain" alt="" id="imgC">
+                    <h1 id="judulGame">PLAYER UKNOWN BATTLEGROUND</h1>
+                    <div class="butonItemToCart"  id="butonItemToCart">
+                        <img src="https://i.pinimg.com/originals/1c/93/e3/1c93e3c38d7c60ee0fe44cff4475edfe.png" id="itemImg">
+                        <h1 id="quantity">100</h1>
+                    </div>
+                    <div class="butonItemToCart1" id="butonItemToCart">
+                        <img src="https://i.pinimg.com/originals/1c/93/e3/1c93e3c38d7c60ee0fe44cff4475edfe.png" id="itemImg">
+                        <h1 id="quantity">500</h1>
+                    </div>
+                    <div class="butonItemToCart2" id="butonItemToCart">
+                        <img src="https://i.pinimg.com/originals/1c/93/e3/1c93e3c38d7c60ee0fe44cff4475edfe.png" id="itemImg">
+                        <h1 id="quantity">1520</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="Container0">
+                <span>HONKAI STAR RAIL</span>
+                <div id="Container1">
+                    <img src="https://th.bing.com/th/id/OIP.JXh0AtmJfY0G7a0HtyY5OQHaEK?rs=1&pid=ImgDetMain" alt="" id="imgC">
+                    <h1 id="judulGame">HONKAI STAR RAIL</h1>
+                    <div class="butonItemToCart"  id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.5ZfbnSBx4jnWXPj3TuuFAQAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">200</h1>
+                    </div>
+                    <div class="butonItemToCart1" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.5ZfbnSBx4jnWXPj3TuuFAQAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">500</h1>
+                    </div>
+                    <div class="butonItemToCart2" id="butonItemToCart">
+                        <img src="https://th.bing.com/th/id/OIP.5ZfbnSBx4jnWXPj3TuuFAQAAAA?rs=1&pid=ImgDetMain" id="itemImg">
+                        <h1 id="quantity">1250</h1>
+                    </div>
+                </div>
+            </div>
+            <div id="Container0">
+                <span>HONOR OF KINGS</span>
+                <div id="Container1">
+                    <img src="https://t2.tudocdn.net/656856?w=1920" alt="" id="imgC">
+                    <h1 id="judulGame">HONOR OF KINGS</h1>
+                    <div class="butonItemToCart"  id="butonItemToCart">
+                        <img src="https://cdn.midasbuy.com/public/d8ff36f3bcde316bb9e82e1ee73797eb.png" id="itemImg">
+                        <h1 id="quantity">15</h1>
+                    </div>
+                    <div class="butonItemToCart1" id="butonItemToCart">
+                        <img src="https://cdn.midasbuy.com/public/d8ff36f3bcde316bb9e82e1ee73797eb.png" id="itemImg">
+                        <h1 id="quantity">200</h1>
+                    </div>
+                    <div class="butonItemToCart2" id="butonItemToCart">
+                        <img src="https://cdn.midasbuy.com/public/d8ff36f3bcde316bb9e82e1ee73797eb.png" id="itemImg">
+                        <h1 id="quantity">1200</h1>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="cartField">
+            <div id="wrapcart">
+            </div>
+        </div>
+        <nav>
+            <img src="./assets/Untitled487_20241124112257.png" id="lgo">
+            <h1>CRUX</h1>
+            <i class='bx bx-cart' id="navCart"></i>
+        </nav>
+        <div id="BillWindow">
+            Haega Total : <span id="TotalPrice"></span><br><br>
+            Bayar : <input type="text" name="" id="pay"><br><br>
+            Cashback : <span id="Cashback"></span>
+        </div>
+    </div>
+</body>
+<script>
+    let Container0 = document.querySelectorAll("#Container0")
+    let Container1 = document.querySelectorAll("#Container1")
+    Container0.forEach((element,index) => {
+        element.addEventListener('mouseenter',function () {
+            Container1[index].style.width ="90vw"
+        })
+        element.addEventListener('mouseleave',function () {
+            Container1[index].style.width ="3vw"
+        })
+    });
+    let TotalPrice = document.getElementById("TotalPrice")
+    let pay = document.getElementById("pay")
+    let Cashback = document.getElementById("Cashback")
+    let wrapcart = document.getElementById("wrapcart")
+    let cartField = document.getElementById("cartField")
+    let navCart = document.getElementById("navCart")
+    let toggleCart = false
+    navCart.addEventListener("click",function () {
+        if(!toggleCart){
+        cartField.style.display ="inline"
+        toggleCart = true
+    }else{
+        cartField.style.display ="none"
+        toggleCart = false
+        }
+    })
+    let butonItemToCart = document.querySelectorAll("#butonItemToCart")
+    let itemImg = document.querySelectorAll("#itemImg")
+    let quantity = document.querySelectorAll("#quantity")
+    let hargaAwal = 0
+    let qtaml = 0
+    let qtaGI = 0
+    let qtaPUBG = 0
+    let qtaHSR = 0
+    let qtaHOK = 0
+    let arrayForEx = []
+
+    let qtml = document.getElementById("qtml")
+
+    function eventCLickUpdate() {
+        hargaAwal = ((qtaml*300)+(qtaGI*200)+(qtaPUBG*500)+(qtaHSR*180)+(qtaHOK*80))
+        TotalPrice.innerHTML = `Rp. ${hargaAwal}`
+    }
+    eventCLickUpdate()
+
+    butonItemToCart.forEach((e,i) => {
+        butonItemToCart[i].addEventListener("click",function () {
+            if(i==0||i==1||i==2){
+                if(!arrayForEx.includes("Diamond")){
+                    arrayForEx.push("Diamond")
+                    wrapcart.innerHTML +=`
+                    <fieldset id="cartItem">
+                        <img src="https://th.bing.com/th/id/OIP.Wy8VAg4J_8XAobO00ijuvgAAAA?rs=1&pid=ImgDetMain" id="itemImgcart">
+                         <h1 id="namaBarang">Diamond</h1>
+                             <span id="barPrice"><span id="harga">300</span> x <span id="qtml">${quantity[i].innerHTML}</span></span>
+                            <div id="minml" class="min">-</div>
+                    </fieldset>
+                    `
+                    let minml = document.getElementById("minml")
+                    minml.addEventListener("click",function () {
+                        console.log("hei")
+                        eventCLickUpdate()
+                        qtml = document.getElementById("qtml")
+                        if(qtaml>=20){
+                            qtaml-=20
+                        }
+                        qtml.innerHTML = `${qtaml}`
+                    })
+                }else{
+                    qtml = document.getElementById("qtml")
+                    qtaml += parseInt(quantity[i].innerHTML)
+                    qtml.innerHTML = `${qtaml}`
+                }
+            }else if(i==3||i==4||i==5){
+                if(!arrayForEx.includes("primo")){
+                    arrayForEx.push("primo")
+                    wrapcart.innerHTML +=`
+                    <fieldset id="cartItem">
+                        <img src="https://th.bing.com/th/id/OIP.XcUekMvTYdZTSPd4obZrXgAAAA?rs=1&pid=ImgDetMain" id="itemImgcart">
+                         <h1 id="namaBarang">Primo</h1>
+                             <span id="barPrice"><span id="harga">200</span> x <span id="qtGI">${quantity[i].innerHTML}</span></span>
+                            <div id="minGI" class="min">-</div>
+                    </fieldset>
+                    `
+                    let minGI = document.getElementById("minGI")
+                    minGI.addEventListener("click",function () {
+                        // console.log("hei")
+                        eventCLickUpdate()
+                        qtGI = document.getElementById("qtGI")
+                        if(qtaGI>=200){
+                            qtaGI-=200
+                        }
+                        qtGI.innerHTML = `${qtaGI}`
+                    })
+                    eventCLickUpdate()
+
+                }else{
+                    qtGI = document.getElementById("qtGI")
+                    qtaGI += parseInt(quantity[i].innerHTML)
+                    qtGI.innerHTML = `${qtaGI}`
+                }
+                
+            }else if(i==6||i==7||i==8){
+                if(!arrayForEx.includes("UC")){
+                    arrayForEx.push("UC")
+                    wrapcart.innerHTML +=`
+                    <fieldset id="cartItem">
+                        <img src="https://i.pinimg.com/originals/1c/93/e3/1c93e3c38d7c60ee0fe44cff4475edfe.png" id="itemImgcart">
+                         <h1 id="namaBarang">UC</h1>
+                             <span id="barPrice"><span id="harga">500</span> x <span id="qtPUBG">${quantity[i].innerHTML}</span></span>
+                            <div id="minPUBG" class="min">-</div>
+                    </fieldset>
+                    `
+                    let minPUBG = document.getElementById("minPUBG")
+                    minPUBG.addEventListener("click",function () {
+                        // console.log("hei")
+                        eventCLickUpdate()
+                        qtPUBG = document.getElementById("qtPUBG")
+                        if(qtaPUBG>=100){
+                            qtaPUBG-=100
+                        }
+                        qtPUBG.innerHTML = `${qtaPUBG}`
+                    })
+                }else{
+                    qtPUBG = document.getElementById("qtPUBG")
+                    qtaPUBG += parseInt(quantity[i].innerHTML)
+                    qtPUBG.innerHTML = `${qtaPUBG}`
+                    eventCLickUpdate()
+
+                }
+                
+                
+            }else if(i==9||i==10||i==11){
+                if(!arrayForEx.includes("OS")){
+                    arrayForEx.push("OS")
+                    wrapcart.innerHTML +=`
+                    <fieldset id="cartItem">
+                        <img src="https://th.bing.com/th/id/OIP.5ZfbnSBx4jnWXPj3TuuFAQAAAA?rs=1&pid=ImgDetMain" id="itemImgcart">
+                         <h1 id="namaBarang">OS</h1>
+                             <span id="barPrice"><span id="harga">180</span> x <span id="qtHSR">${quantity[i].innerHTML}</span></span>
+                            <div id="minHSR" class="min">-</div>
+                    </fieldset>
+                    `
+                    let minHSR = document.getElementById("minHSR")
+                    minHSR.addEventListener("click",function () {
+                        // console.log("hei")
+                        eventCLickUpdate()
+                        qtHSR = document.getElementById("qtHSR")
+                        if(qtaHSR>=200){
+                            qtaHSR-=200
+                        }
+                        qtHSR.innerHTML = `${qtaHSR}`
+                    })
+                }else{
+                    qtHSR = document.getElementById("qtHSR")
+                    qtaHSR += parseInt(quantity[i].innerHTML)
+                    qtHSR.innerHTML = `${qtaHSR}`
+                    eventCLickUpdate()
+
+                }
+                
+                
+            }else if(i==12||i==13||i==14){
+                if(!arrayForEx.includes("Token")){
+                    arrayForEx.push("Token")
+                    wrapcart.innerHTML +=`
+                    <fieldset id="cartItem">
+                        <img src="https://cdn.midasbuy.com/public/d8ff36f3bcde316bb9e82e1ee73797eb.png" id="itemImgcart">
+                         <h1 id="namaBarang">Token</h1>
+                             <span id="barPrice"><span id="harga">80</span> x <span id="qtHOK">${quantity[i].innerHTML}</span></span>
+                            <div id="minHOK" class="min">-</div>
+                    </fieldset>
+                    `
+                    let minHOK = document.getElementById("minHOK")
+                    minHOK.addEventListener("click",function () {
+                        // console.log("hei")
+                        eventCLickUpdate()
+                        qtHOK = document.getElementById("qtHOK")
+                        if(qtaHOK>=15){
+                            qtaHOK-=15
+                        }
+                        qtHOK.innerHTML = `${qtaHOK}`
+                    })
+                }else{
+                    qtHOK = document.getElementById("qtHOK")
+                    qtaHOK += parseInt(quantity[i].innerHTML)
+                    qtHOK.innerHTML = `${qtaHOK}`
+                    eventCLickUpdate()
+                }
+                
+            }
+            eventCLickUpdate()
+        })
+    });
+    pay.addEventListener("change",function () {
+        if(pay.value>hargaAwal){
+            Cashback.innerHTML = `${pay.value-hargaAwal}`
+            alert("senang berteransaksi dengan anda, kembalian anda adalah"+ pay.value-hargaAwal )
+        }else{
+            alert("uang anda tidak cukup")
+        }
+    })
+</script>
+</html>
